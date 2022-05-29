@@ -1,0 +1,38 @@
+
+
+module load anaconda3/2021.11
+
+CONDA_OVERRIDE_CUDA="11.2" conda create --prefix /projects/LIGHTSHEET/posfailab/ab50/tools/tf2-posfai python=3.9 "tensorflow==2.7.0=cuda112*" matplotlib pandas --channel conda-forge
+conda activate /projects/LIGHTSHEET/posfailab/ab50/tools/tf2-posfai
+pip install stardist==0.8.1
+pip install opencv-python==4.5.5.64
+git clone https://bitbucket.org/fernandoamat/keller-lab-block-filetype.git
+cd keller-lab-block-filetype
+mkdir build
+cd build
+cmake ..
+make
+
+git clone https://github.com/bhoeckendorf/pyklb.git
+cd pyklb
+mkdir -r build/lib
+cp ../../../keller-lab-block-filetype/build/src/libklb.so .
+pip install Cython
+python setup.py bdist_wheel
+pip install dist/pyklb-0.0.3.dev0-cp39-cp39-linux_x86_64.whl
+export LD_LIBRARY_PATH=/projects/LIGHTSHEET/posfailab/ab50/tools/keller-lab-block-filetype/build/src
+
+conda activate /projects/LIGHTSHEET/posfailab/ab50/tools/tf2-posfai
+
+/tigress/ab50/posfai_lab/data/test_data/TestSets/out/folder_Cam_Long_00043.lux
+
+salloc --nodes=1 --ntasks=4 --mem=10G --time=0:10:00 --gres=gpu:1
+
+conda activate /home/ab50/.conda/envs/tf2-gpu_posfai
+
+import h5py
+import pyklb
+Xi = pyklb.readfull('klbOut_Cam_Long_00043.lux.klb')
+h5f = h5py.File('data.h5', 'w')
+h5f.create_dataset('dataset_1', data=Xi)
+h5f.close()
