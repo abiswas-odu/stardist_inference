@@ -37,7 +37,7 @@ setup(
     entry_points={
         'console_scripts': ['stardist_inference=src.stardist_inference.__main__:main'],
     },
-    url='https://github.com',
+    url='https://github.com/abiswas-odu/stardist_inference.git',
     license='GNU General Public License v3',
     classifiers=[
         'Programming Language :: Python',
