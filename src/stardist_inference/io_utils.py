@@ -3,7 +3,7 @@ import numpy as np
 import h5py
 import pyklb
 import tifffile as tif
-import roi_convertor
+from roi_convertor.gen_rois import gen_roi_narray
 
 
 from csbdeep.io import save_tiff_imagej_compatible
@@ -96,4 +96,4 @@ def write_image(labels, out_image_file, output_format, gen_roi):
         save_tiff_imagej_compatible(segmentation_file_name, labels.astype('uint16'), axes='ZYX')
 
     if gen_roi:
-        roi_convertor.gen_rois.gen_roi_narray(labels, segmentation_file_name)
+        gen_roi_narray(labels, segmentation_file_name)
