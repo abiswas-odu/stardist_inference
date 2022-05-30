@@ -32,16 +32,16 @@ __version__ = "0.2"
 )
 @click.option(
     "--nms_thresh","-n", required=False, default=0.3, type=click.FLOAT,
-    help="The nms threshold to be used to initialize the Stardist 3D model."
+    help="The nms threshold to be used to initialize the Stardist 3D model.",
 )
 @click.option(
     "--output_format","-f", required=False, default="tif",
-    type=click.Choice(["klb","h5","tif","npy"]), case_sensitive=False,
-    help="The output format klb/h5/tif/npy."
+    type=click.Choice(["klb","h5","tif","npy"]),
+    help="The output format klb/h5/tif/npy.",
 )
 @click.option(
     "--gen_roi","-gr", is_flag=True,
-    help="Generate ROI files for segmentation correction."
+    help="Generate ROI files for segmentation correction.",
 )
 @click.version_option(version=__version__)
 def main(
