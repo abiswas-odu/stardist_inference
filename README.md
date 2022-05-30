@@ -47,3 +47,9 @@ make
 ```
 2. Point your environment variable to it: 
 ```export LD_LIBRARY_PATH=/projects/LIGHTSHEET/posfailab/ab50/tools/keller-lab-block-filetype/build/src```
+   
+## Running stardist_inference
+
+stardist_inference has a reasonable commandline interface with help. 
+
+```stardist_inference --help```
