@@ -3,6 +3,9 @@ import numpy as np
 import h5py
 import pyklb
 import tifffile as tif
+import roi_convertor
+
+
 from csbdeep.io import save_tiff_imagej_compatible
 
 def read_image(image_path_file):
@@ -65,12 +68,32 @@ def crop_frames(Xi, frame_1, frame_2):
     """
     return Xi[frame_1:frame_2, :, :]
 
-def write_image_tif(labels, out_image_file):
+def write_image(labels, out_image_file, output_format, gen_roi):
     """Writes a N-dimensional numpy array in tif format
     Args:
         labels:  N-dimensional numpy array
         out_image_file: Path to the output image file including name.
+        output_format: The segmentation output format klb/h5/tif/npy.
+        gen_roi: Generate ROI if true
     Raises:
         ValueError: if the path is invalid.
     """
-    save_tiff_imagej_compatible(out_image_file, labels.astype('uint16'), axes='ZYX')
+
+    segmentation_file_name = ""
+    if output_format.upper() == "KLB":
+        segmentation_file_name = out_image_file + ".klb"
+        pyklb.writefull(labels, segmentation_file_name)
+    elif output_format.upper() == "H5":
+        segmentation_file_name = out_image_file + ".h5"
+        hf = h5py.File(segmentation_file_name, 'w')
+        hf.create_dataset('Data', data=labels)
+        hf.close()
+    elif output_format.upper() == "NPY":
+        segmentation_file_name = out_image_file + ".npy"
+        np.save(segmentation_file_name,labels)
+    else:
+        segmentation_file_name = out_image_file + ".tif"
+        save_tiff_imagej_compatible(segmentation_file_name, labels.astype('uint16'), axes='ZYX')
+
+    if gen_roi:
+        roi_convertor.gen_rois.gen_roi_narray(labels, segmentation_file_name)

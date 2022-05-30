@@ -10,7 +10,11 @@ def read(fname):
 long_description = read('README.md')
 
 install_requires = [
-    'click'
+    "click",
+    "stardist==0.8.1",
+    "opencv-python==4.5.5.64",
+    "pycocotools @ git+https://github.com/bhoeckendorf/pyklb.git@skbuild",
+    "pycocotools @ git+https://github.com/abiswas-odu/roi_convertor.git"
 ]
 
 def read_version():
