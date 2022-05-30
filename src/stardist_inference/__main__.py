@@ -1,7 +1,7 @@
 """CLI for stardist_inference."""
 import click
-from . import io_utils
-from . import stardist_functions
+from stardist_inference import io_utils
+from stardist_inference import stardist_functions
 import os
 
 __version__ = "0.2"

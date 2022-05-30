@@ -27,7 +27,8 @@ setup(
     name="stardist_inference",
     python_requires='>=3.9',
     version=read_version(),
-    packages=find_packages(exclude=["*.test", "*.test.*", "test.*", "test"]),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
     author='Posfai lab development team.',
     author_email='ab50@princeton.edu',
     description='Perform stardist 3d inference.',
@@ -35,7 +36,7 @@ setup(
     long_description_content_type='text/markdown',
     install_requires=install_requires,
     entry_points={
-        'console_scripts': ['stardist_inference=src.stardist_inference.__main__:main'],
+        'console_scripts': ['stardist_inference=stardist_inference.__main__:main'],
     },
     url='https://github.com/abiswas-odu/stardist_inference.git',
     license='GNU General Public License v3',
