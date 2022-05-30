@@ -13,8 +13,8 @@ install_requires = [
     "click",
     "stardist==0.8.1",
     "opencv-python==4.5.5.64",
-    "pycocotools @ git+https://github.com/bhoeckendorf/pyklb.git@skbuild",
-    "pycocotools @ git+https://github.com/abiswas-odu/roi_convertor.git"
+    "pyklb @ git+https://github.com/bhoeckendorf/pyklb.git@skbuild",
+    "roi_convertor @ git+https://github.com/abiswas-odu/roi_convertor.git"
 ]
 
 def read_version():
