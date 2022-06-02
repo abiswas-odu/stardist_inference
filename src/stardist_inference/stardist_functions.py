@@ -56,7 +56,7 @@ def run_3D_stardist(model, Xi, axis_norm, split_predict, prob_threshold_post, nm
         details: segmentation details.
     """
     if split_predict:
-        prob_mat, dist_mat = model.predict(normalize(Xi, 1,99.8, axis=axis_norm))
+        prob_mat, dist_mat = model.predict(normalize(Xi, 1, 99.8, axis=axis_norm))
 
         # should be TIME in name of output
         #np.save(output_dir + '/prob_mat' + im_name + '.npy',prob_mat)
@@ -75,6 +75,6 @@ def run_3D_stardist(model, Xi, axis_norm, split_predict, prob_threshold_post, nm
                                                            nms_thresh=nms_threshold_post)
 
     else:
-        labels, details = model.predict_instances(normalize(Xi, 1,99.8, axis=axis_norm))
+        labels, details = model.predict_instances(normalize(Xi, 1, 99.8, axis=axis_norm))
 
     return labels, details
