@@ -26,8 +26,8 @@ def initialize_model(model_dir, prob_threshold, nms_threshold):
     Raises:
         ValueError: if the path is not found.
     """
-    print('Loading model...')
     model_name = os.path.basename(model_dir)
+    print('Loading model: ', model_name)
     model = StarDist3D(None, name=model_name, basedir=os.path.dirname(model_dir))
     print("Original thresholds:", model._thresholds)
 
