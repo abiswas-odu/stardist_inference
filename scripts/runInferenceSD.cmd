@@ -12,7 +12,7 @@ IMAGE_PATH="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/da
 OUT_DIR="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/output"
 MODEL_DIR="/projects/LIGHTSHEET/posfailab/ab50/data/models/LB_stardist_Jan2022All_32x256x256_flips"
 PROB_THRESH="0.5"
-NMS_THRESH="0.3"
+NMS_THRESH="0.6"
 
 ##===================================================================================================
 ##==============================NO CHANGES BELOW THIS LINE===========================================
@@ -28,7 +28,7 @@ module load anaconda3/2020.11
 export LD_LIBRARY_PATH=/projects/LIGHTSHEET/posfailab/ab50/tools/keller-lab-block-filetype/build/src
 conda activate /projects/LIGHTSHEET/posfailab/ab50/tools/tf2-posfai
 
-stardist_inference --image_path ${IMAGE_PATH} --output_dir ${OUT_DIR} --model_dir ${MODEL_DIR} --prob_thresh ${PROB_THRESH} --nms_thresh ${NMS_THRESH}
+stardist_inference --image_path ${IMAGE_PATH} --output_dir ${OUT_DIR} --model_dir ${MODEL_DIR} --prob_thresh ${PROB_THRESH} --nms_thresh ${NMS_THRESH} --output_format tif --gen_roi
 
 echo Ending time is $(date)
 endtime=$(date +"%s")

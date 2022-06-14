@@ -53,3 +53,11 @@ make
 stardist_inference has a reasonable commandline interface with help. 
 
 ```stardist_inference --help```
+
+### SLURM Script
+
+A sample SLURM script is provided in ```scripts/runInferenceSD.cmd```. Change the parameters on top and use ```sbatch``` to submit.
+
+### Sample Commandline
+
+stardist_inference --image_path ${IMAGE_PATH} --output_dir ${OUT_DIR} --model_dir ${MODEL_DIR} --prob_thresh ${PROB_THRESH} --nms_thresh ${NMS_THRESH} --output_format tif --gen_roi
