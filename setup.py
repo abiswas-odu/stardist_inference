@@ -14,7 +14,7 @@ install_requires = [
     "stardist==0.8.1",
     "opencv-python==4.5.5.64",
     #"pyklb @ git+https://github.com/bhoeckendorf/pyklb.git@skbuild",
-    #"roi_convertor @ git+https://github.com/abiswas-odu/roi_convertor.git"
+    "roi_convertor @ git+https://github.com/abiswas-odu/roi_convertor.git"
 ]
 
 def read_version():
