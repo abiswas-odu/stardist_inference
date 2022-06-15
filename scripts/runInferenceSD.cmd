@@ -10,7 +10,7 @@
 
 IMAGE_PATH="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/data/batch"
 OUT_DIR="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/output"
-MODEL_DIR="/projects/LIGHTSHEET/posfailab/ab50/data/models/LB_stardist_Jan2022All_32x256x256_flips"
+MODEL_DIR="/projects/LIGHTSHEET/posfailab/ab50/data/models/LB_stardist_Feb2022_32x256x256_Final_newsplit_flips"
 PROB_THRESH="0.5"
 NMS_THRESH="0.3"
 
