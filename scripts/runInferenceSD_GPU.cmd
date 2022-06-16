@@ -2,8 +2,9 @@
 
 #SBATCH --job-name=sd_infer      # create a short name for your job
 #SBATCH --nodes=1                # node count
-#SBATCH --ntasks=10              # total number of tasks across all nodes
-#SBATCH --mem=250G               # total memory per node
+#SBATCH --ntasks=4               # total number of tasks across all nodes
+#SBATCH --gres=gpu:1             # gpu count
+#SBATCH --mem=100G               # total memory per node
 #SBATCH --time=1:00:00           # total run time limit (HH:MM:SS)
 #SBATCH -A molbio
 
@@ -33,6 +34,8 @@ module purge
 module load anaconda3/2020.11
 export LD_LIBRARY_PATH=/projects/LIGHTSHEET/posfailab/ab50/tools/keller-lab-block-filetype/build/src
 conda activate /projects/LIGHTSHEET/posfailab/ab50/tools/tf2-posfai
+rm -rf ${OUT_DIR}
+mkdir ${OUT_DIR}
 
 stardist_inference --image_path ${IMAGE_PATH} \
   --output_dir ${OUT_DIR} \
