@@ -4,15 +4,24 @@
 
 You do not need to install anything. 
 
-Make a copy of the script ```scripts/runInferenceSD.cmd``` and change the paths:
+Make a copy of the script ```/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/scripts/runInferenceSD.cmd``` and change the paths:
+
+```
+cp /projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/scripts/runInferenceSD.cmd <YOUR_PATH>
+cd <YOUR_PATH>
+```
+
+Edit the script in vi/vim/nano/emacs or copy the script into your local machine and edit it: 
 
 1. IMAGE_PATH: This should point to a folder with images in klb/h5/tif/npy format and extensions. The images may be directly under the folder or in sub-directories underneath. Additionally, this variable can also be a direct path to an image file.
 
 2. OUT_DIR: The directory where the segmented labeled TIF files are saved.
 
-3. MODEL_DIR: Can be changed if needed. Should not be necessary for a while.
+3. OUT_FORMAT: The output format: klb/h5/tif/npy. 
 
-NOTE: If you just want to test, the paths are already setup for a test. Just move on to the next step! 
+NOTE: If you just want to test, the paths are already setup for a test. Just move on to the next step!
+
+Save the script in ```<YOUR_PATH>```. 
 
 Submit the job on the scheduler:
 ```sbatch runInferenceSD.cmd```
