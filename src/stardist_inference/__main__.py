@@ -4,7 +4,7 @@ from . import io_utils
 from . import stardist_functions
 import os
 
-__version__ = "0.2"
+__version__ = "0.3"
 
 @click.command()
 @click.option(
