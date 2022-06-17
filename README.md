@@ -4,6 +4,7 @@
 
 You do not need to install anything. 
 
+### Step 1
 Make a copy of the script ```/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/scripts/runInferenceSD.cmd``` and change the paths:
 
 ```
@@ -11,6 +12,7 @@ cp /projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/scripts/runInfer
 cd <YOUR_PATH>
 ```
 
+### Step 2
 Edit the script in vi/vim/nano/emacs or copy the script into your local machine and edit it: 
 
 1. IMAGE_PATH: This should point to a folder with images in klb/h5/tif/npy format and extensions. The images may be directly under the folder or in sub-directories underneath. Additionally, this variable can also be a direct path to an image file.
@@ -23,9 +25,11 @@ NOTE: If you just want to test, the paths are already setup for a test. Just mov
 
 Save the script in ```<YOUR_PATH>```. 
 
+### Step 3
 Submit the job on the scheduler:
 ```sbatch runInferenceSD.cmd```
 
+### Step 4
 Wait for the job to be scheduled and run. The status can be checked with the command:
 ```squeue -u <USERNAME>```
 
