@@ -85,7 +85,7 @@ def write_image(labels, out_image_file, output_format, gen_roi):
     segmentation_file_name = ""
     if output_format.upper() == "KLB":
         segmentation_file_name = out_image_file + ".klb"
-        pyklb.writefull(labels, segmentation_file_name)
+        pyklb.writefull(labels.astype('uint16'), segmentation_file_name)
     elif output_format.upper() == "H5":
         segmentation_file_name = out_image_file + ".h5"
         hf = h5py.File(segmentation_file_name, 'w')
