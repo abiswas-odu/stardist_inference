@@ -35,6 +35,26 @@ Wait for the job to be scheduled and run. The status can be checked with the com
 
 Output files should be produced in OUT_DIR with the same basename as the input file, but the extension will be changed to ```.label.<ext>```. Also, review the SLURM log created in the same folder as the cmd script.
 
+### Step 5
+Converting files between klb and tif formats:
+
+1. Setup environment
+```
+module load anaconda3/2021.11
+conda activate /projects/LIGHTSHEET/posfailab/ab50/tools/tf2-posfai
+export LD_LIBRARY_PATH=/projects/LIGHTSHEET/posfailab/ab50/tools/keller-lab-block-filetype/build/src
+```
+
+2. TIF to KLB format
+```
+python /projects/LIGHTSHEET/posfailab/ab50/tools/klb2tif.py <YOUR_KLB_FILE>
+```
+
+3. KLB to TIF format
+```
+python /projects/LIGHTSHEET/posfailab/ab50/tools/tif2klb.py <YOUR_TIF_FILE>
+```
+
 ## Installing on your own machine
 
 1. Clone the repo: 
