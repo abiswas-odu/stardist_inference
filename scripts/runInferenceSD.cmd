@@ -9,7 +9,7 @@
 
 
 IMAGE_PATH="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/data/batch"
-OUT_DIR="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/gold_output/batch"
+OUT_DIR="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/output/batch"
 OUT_FORMAT="klb"
 
 ##===================================================================================================

@@ -20,7 +20,7 @@ Submit the job on the scheduler:
 Wait for the job to be scheduled and run. The status can be checked with the command:
 ```squeue -u <USERNAME>```
 
-Output files should be produced in OUT_DIR with the same basename as the input file, but the extension will be changed to ```.label.tif```. Also, review the SLURM log created in the same folder as the cmd script.
+Output files should be produced in OUT_DIR with the same basename as the input file, but the extension will be changed to ```.label.<ext>```. Also, review the SLURM log created in the same folder as the cmd script.
 
 ## Installing on your own machine
 

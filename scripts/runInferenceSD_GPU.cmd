@@ -4,13 +4,13 @@
 #SBATCH --nodes=1                # node count
 #SBATCH --ntasks=4               # total number of tasks across all nodes
 #SBATCH --gres=gpu:1             # gpu count
-#SBATCH --mem=100G               # total memory per node
+#SBATCH --mem=250G               # total memory per node
 #SBATCH --time=1:00:00           # total run time limit (HH:MM:SS)
 #SBATCH -A molbio
 
 
 IMAGE_PATH="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/data/batch"
-OUT_DIR="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/gold_output/batch"
+OUT_DIR="/projects/LIGHTSHEET/posfailab/ab50/tools/stardist_inference/test/output/batch"
 OUT_FORMAT="klb"
 
 ##===================================================================================================
