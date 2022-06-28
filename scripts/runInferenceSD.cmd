@@ -17,7 +17,7 @@ OUT_FORMAT="klb"
 ##===================================================================================================
 
 MODEL_DIR="/projects/LIGHTSHEET/posfailab/ab50/data/models/LB_stardist_Feb2022_32x256x256_Final_newsplit_flips"
-PROB_THRESH="0.5"
+PROB_THRESH="0.6"
 NMS_THRESH="0.3"
 
 ##===================================================================================================
