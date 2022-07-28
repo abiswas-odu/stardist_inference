@@ -42,6 +42,10 @@ stardist_inference --image_path ${IMAGE_PATH} \
   --output_format ${OUT_FORMAT} \
   --gen_roi
 
+roi_convert generate-analytics --orig_image ${IMAGE_PATH} \
+  --segmentation_image ${OUT_DIR} \
+  --output_file ${OUT_DIR}\hand_correction_guide.csv
+
 echo Ending time is $(date)
 endtime=$(date +"%s")
 diff=$(($endtime - $starttime))
