@@ -44,8 +44,8 @@ __version__ = "0.4"
     help="Generate ROI files for segmentation correction.",
 )
 @click.option(
-    "--perform_8bit_shift","-8sft", is_flag=False,
-    help="Perform 8 bit shift when reading image.",
+    "--no_8bit_shift","-no8sft", is_flag=True,
+    help="Do not perform 8 bit shift when reading image.",
 )
 @click.version_option(version=__version__)
 def main(
@@ -56,7 +56,7 @@ def main(
         nms_thresh: float,
         output_format: str,
         gen_roi: bool,
-        perform_8bit_shift: bool
+        no_8bit_shift: bool
 ) -> None:
     """Main entry point for stardist_inference."""
 
@@ -72,7 +72,7 @@ def main(
                                          os.path.splitext(f)[1] == '.npy')]
         for image_file in result:
             print("Processing image:", image_file)
-            Xi = io_utils.read_image(image_file, perform_8bit_shift)
+            Xi = io_utils.read_image(image_file, not no_8bit_shift)
             axis_norm = (0, 1, 2)  # normalize channels independently
             label,detail = stardist_functions.run_3D_stardist(model, Xi, axis_norm, False, prob_thresh, nms_thresh)
 
@@ -81,7 +81,7 @@ def main(
             io_utils.write_image(label, out_image_path, output_format, gen_roi)
     else:
         print("Processing image:", image_path)
-        Xi = io_utils.read_image(image_path, perform_8bit_shift)
+        Xi = io_utils.read_image(image_path, not no_8bit_shift)
         axis_norm = (0, 1, 2)  # normalize channels independently
         label,detail = stardist_functions.run_3D_stardist(model, Xi, axis_norm, False, prob_thresh, nms_thresh)
 

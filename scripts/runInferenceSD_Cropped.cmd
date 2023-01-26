@@ -44,7 +44,7 @@ stardist_inference --image_path ${IMAGE_PATH} \
   --nms_thresh ${NMS_THRESH} \
   --output_format ${OUT_FORMAT} \
   --gen_roi \
-  --perform_8bit_shift
+  --no_8bit_shift
 
 echo Ending time is $(date)
 endtime=$(date +"%s")
