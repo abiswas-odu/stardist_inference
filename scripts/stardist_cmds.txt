@@ -36,3 +36,5 @@ Xi = pyklb.readfull('klbOut_Cam_Long_00043.lux.klb')
 h5f = h5py.File('data.h5', 'w')
 h5f.create_dataset('dataset_1', data=Xi)
 h5f.close()
+
+xattr -d com.apple.quarantine ./klb2tif.sh

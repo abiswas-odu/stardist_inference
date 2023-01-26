@@ -11,7 +11,7 @@ from roi_convertor.gen_rois import gen_roi_narray
 
 from csbdeep.io import save_tiff_imagej_compatible
 
-def read_image(image_path_file):
+def read_image(image_path_file, perform_8bit_shift=True):
     """Read an image file in in klb/h5/tif/npy format.
     Args:
         image_path_file: Path to the image file in klb/h5/tif/npy format with the same extensions respectively.
@@ -42,8 +42,9 @@ def read_image(image_path_file):
         Xi = pyklb.readfull(image_path_file)
 
     # convert to 8-bit by 4-bit shift
-    Xi = Xi >> 4
-    Xi = Xi.astype(dtype=np.uint8)
+    if perform_8bit_shift:
+        Xi = Xi >> 4
+        Xi = Xi.astype(dtype=np.uint8)
     print('loaded image shape:', Xi.shape)
     return Xi
 
