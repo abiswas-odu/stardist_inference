@@ -1,18 +1,6 @@
-from __future__ import print_function, unicode_literals, absolute_import, division
-import sys
-import numpy as np
-from glob import glob
-from tifffile import imread
-from csbdeep.utils import Path, normalize
-from csbdeep.io import save_tiff_imagej_compatible
-from stardist import random_label_cmap
+from csbdeep.utils import normalize
 from stardist.models import StarDist3D
-from stardist import fill_label_holes
-from stardist.matching import matching, matching_dataset
-import cv2
 import os
-from stardist import gputools_available
-import tensorflow as tf
 
 
 def initialize_model(model_dir, prob_threshold, nms_threshold):
@@ -58,20 +46,13 @@ def run_3D_stardist(model, Xi, axis_norm, split_predict, prob_threshold_post, nm
     if split_predict:
         prob_mat, dist_mat = model.predict(normalize(Xi, 1, 99.8, axis=axis_norm))
 
-        # should be TIME in name of output
-        #np.save(output_dir + '/prob_mat' + im_name + '.npy',prob_mat)
-        #np.save(output_dir + '/dist_mat' + im_name + '.npy', dist_mat)
-
-        #prob_mat = np.load(output_dir + '/prob_mat' + im_name + '.npy')
-        #dist_mat = np.load(output_dir + '/dist_mat' + im_name + '.npy')
-
         # This is the post processing involving nms suppression
-        labels, details = model._instances_from_prediction(img_shape=Xi.shape, \
-                                                           prob=prob_mat, \
-                                                           dist=dist_mat, \
-                                                           points=None, \
-                                                           prob_class=None, \
-                                                           prob_thresh=prob_threshold_post, \
+        labels, details = model._instances_from_prediction(img_shape=Xi.shape,
+                                                           prob=prob_mat,
+                                                           dist=dist_mat,
+                                                           points=None,
+                                                           prob_class=None,
+                                                           prob_thresh=prob_threshold_post,
                                                            nms_thresh=nms_threshold_post)
 
     else:
