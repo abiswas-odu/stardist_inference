@@ -39,3 +39,6 @@ h5f.create_dataset('dataset_1', data=Xi)
 h5f.close()
 
 xattr -d com.apple.quarantine ./klb2tif.sh
+
+
+CONDA_OVERRIDE_CUDA="11.2" conda create --prefix /projects/LIGHTSHEET/posfailab/ab50/tools/tf2-posfai-test "tensorflow==2.11.1=cuda112*" --channel conda-forge
