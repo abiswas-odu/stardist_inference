@@ -87,7 +87,7 @@ def main(
     # Load model
     early_model = stardist_functions.initialize_model(early_model_dir, early_prob_thresh, early_nms_thresh)
 
-    late_model = stardist_functions.initialize_model(late_model_dir, late_prob_thresh, late_nms_thresh)
+    # late_model = stardist_functions.initialize_model(late_model_dir, late_prob_thresh, late_nms_thresh)
 
     if os.path.isdir(image_path):
         result = [os.path.join(dp, f)
@@ -108,7 +108,7 @@ def main(
                                                                    early_prob_thresh, early_nms_thresh)
             else:
                 print("Segmenting with late stage model.")
-                label, detail = stardist_functions.run_3D_stardist(late_model, Xi,
+                label, detail = stardist_functions.run_3D_stardist(early_model, Xi,
                                                                    axis_norm, False,
                                                                    late_prob_thresh, late_nms_thresh)
 
