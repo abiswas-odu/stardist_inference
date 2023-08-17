@@ -101,3 +101,11 @@ def write_image(labels, out_image_file, output_format, gen_roi):
 
     if gen_roi:
         gen_roi_narray(labels, segmentation_file_name)
+
+def get_filename_components(image_file_str):
+    cur_name = os.path.basename(image_file_str)
+    file_prefix = os.path.splitext(cur_name)[0]
+    file_ext = os.path.splitext(cur_name)[1]
+    file_base = os.path.basename(cur_name).split(os.extsep)
+    time_index = int(file_base[0].split('_')[-1])
+    return file_base, file_prefix, file_ext, time_index
