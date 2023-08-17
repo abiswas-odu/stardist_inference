@@ -46,12 +46,12 @@ mkdir ${OUT_DIR}
 
 stardist_inference --image_path ${IMAGE_PATH} \
   --output_dir ${OUT_DIR} \
-  --early_model_dir ${MODEL_DIR} \
-  --early_prob_thresh ${PROB_THRESH} \
-  --early_nms_thresh ${NMS_THRESH} \
-  --late_model_dir ${MODEL_DIR} \
-  --late_prob_thresh ${PROB_THRESH} \
-  --late_nms_thresh ${NMS_THRESH} \
+  --early_model_dir ${EARLY_MODEL_DIR} \
+  --early_prob_thresh ${EARLY_PROB_THRESH} \
+  --early_nms_thresh ${EARLY_NMS_THRESH} \
+  --late_model_dir ${LATE_MODEL_DIR} \
+  --late_prob_thresh ${LATE_PROB_THRESH} \
+  --late_nms_thresh ${LATE_NMS_THRESH} \
   --timepoint_switch ${TIMEPOINT_SWITCH} \
   --output_format ${OUT_FORMAT} \
   --gen_roi
