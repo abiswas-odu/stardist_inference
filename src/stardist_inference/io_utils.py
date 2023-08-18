@@ -9,8 +9,6 @@ import tifffile as tif
 from roi_convertor.gen_rois import gen_roi_narray
 
 
-from csbdeep.io import save_tiff_imagej_compatible
-
 def read_image(image_path_file, perform_8bit_shift=True):
     """Read an image file in in klb/h5/tif/npy format.
     Args:
@@ -97,8 +95,9 @@ def write_image(labels, out_image_file, output_format, gen_roi):
         np.save(segmentation_file_name,labels)
     else:
         segmentation_file_name = out_image_file + ".tif"
-        save_tiff_imagej_compatible(segmentation_file_name, labels.astype('uint16'), axes='ZYX')
-
+        tif.imwrite(segmentation_file_name, labels.astype('uint16'), imagej=True,
+                    compress="zlib",
+                    metadata={'axes': 'TZYX'})
     if gen_roi:
         gen_roi_narray(labels, segmentation_file_name)
 
