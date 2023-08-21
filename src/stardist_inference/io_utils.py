@@ -7,6 +7,51 @@ except ImportError:
     print("pyklb install missing! All klb format operations will fail. ")
 import tifffile as tif
 from roi_convertor.gen_rois import gen_roi_narray
+# from csbdeep.io import save_tiff_imagej_compatible
+
+
+def axes_dict(axes):
+    """
+    from axes string to dict
+    """
+    return { a: None if axes.find(a) == -1 else axes.find(a) for a in allowed }
+
+
+def move_image_axes(x, fr, to, adjust_singletons=False):
+    """
+    x: ndarray
+    fr,to: axes string (see `axes_dict`)
+    """
+    fr_initial = fr
+    x_shape_initial = x.shape
+    adjust_singletons = bool(adjust_singletons)
+    if adjust_singletons:
+        # remove axes not present in 'to'
+        slices = [slice(None) for _ in x.shape]
+        for i,a in enumerate(fr):
+            if (a not in to) and (x.shape[i]==1):
+                # remove singleton axis
+                slices[i] = 0
+                fr = fr.replace(a,'')
+        x = x[tuple(slices)]
+        # add dummy axes present in 'to'
+        for i,a in enumerate(to):
+            if (a not in fr):
+                # add singleton axis
+                x = np.expand_dims(x,-1)
+                fr += a
+
+    if set(fr) != set(to):
+        _adjusted = '(adjusted to %s and %s) ' % (x.shape, fr) if adjust_singletons else ''
+        raise ValueError(
+            'image with shape %s and axes %s %snot compatible with target axes %s.'
+            % (x_shape_initial, fr_initial, _adjusted, to)
+        )
+
+    ax_from, ax_to = axes_dict(fr), axes_dict(to)
+    if fr == to:
+        return x
+    return np.moveaxis(x, [ax_from[a] for a in fr], [ax_to[a] for a in fr])
 
 
 def read_image(image_path_file, perform_8bit_shift=True):
@@ -95,9 +140,12 @@ def write_image(labels, out_image_file, output_format, gen_roi):
         np.save(segmentation_file_name,labels)
     else:
         segmentation_file_name = out_image_file + ".tif"
-        tif.imwrite(segmentation_file_name, labels.astype('uint16'), imagej=True,
+        img = labels.astype('uint16')
+        img = move_image_axes(img, "ZYX", 'TZCYX', True)
+        # save_tiff_imagej_compatible(segmentation_file_name, labels.astype('uint16'), axes='ZYX')
+        tif.imwrite(segmentation_file_name, img, imagej=True,
                     compress="zlib",
-                    metadata={'axes': 'TZYX'})
+                    metadata={'axes': 'TZCYX'})
     if gen_roi:
         gen_roi_narray(labels, segmentation_file_name)
 

@@ -4,7 +4,7 @@ from . import io_utils
 from . import stardist_functions
 import os
 
-__version__ = "1.1"
+__version__ = "1.2"
 
 from .io_utils import get_filename_components
 
