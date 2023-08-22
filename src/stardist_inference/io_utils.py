@@ -141,11 +141,11 @@ def write_image(labels, out_image_file, output_format, gen_roi):
     else:
         segmentation_file_name = out_image_file + ".tif"
         img = labels.astype('uint16')
-        # img = move_image_axes(img, "ZYX", 'TZCYX', True)
+        img = move_image_axes(img, "ZYX", 'TZCYX', True)
         # save_tiff_imagej_compatible(segmentation_file_name, labels.astype('uint16'), axes='ZYX')
         tif.imwrite(segmentation_file_name, img, imagej=True,
                     compress="zlib",
-                    metadata={'axes': 'ZYX'})
+                    metadata={'axes': 'TZCYX'})
     if gen_roi:
         gen_roi_narray(labels, segmentation_file_name)
 
