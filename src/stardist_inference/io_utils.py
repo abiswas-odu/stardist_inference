@@ -14,7 +14,8 @@ def axes_dict(axes):
     """
     from axes string to dict
     """
-    return { a: None if axes.find(a) == -1 else axes.find(a) for a in allowed }
+    allowed = 'STCZYX'
+    return {a: None if axes.find(a) == -1 else axes.find(a) for a in allowed}
 
 
 def move_image_axes(x, fr, to, adjust_singletons=False):
